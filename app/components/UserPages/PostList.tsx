@@ -43,17 +43,21 @@ export default function PostList() {
 
                     {/* Title */}
                     <h2 className="text-lg font-bold mb-2">{post.title}</h2>
-                    <Image
-                        src={post.imagenUrl}
-                        alt={post.title}
-                        height={400}
-                        width={650}
-                    />
+
+                    {/* Imagen solo si existe */}
+                    {post.imagenUrl && (
+                        <Image
+                            src={post.imagenUrl}
+                            alt={post.title}
+                            height={400}
+                            width={650}
+                        />
+                    )}
+
                     {/* Description */}
                     <p className="text-gray-700 leading-relaxed">
                         {post.content}
                     </p>
-
                 </div>
             ))}
         </div>
