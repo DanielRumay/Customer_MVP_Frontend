@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 
 export async function POST(req: Request) {
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
     try {
         const cookieStore = await cookies();
         const token = cookieStore.get("token")?.value;
@@ -15,7 +16,7 @@ export async function POST(req: Request) {
 
         const body = await req.json();
 
-        const backendRes = await fetch("http://localhost:8080/api/v1/post/create", {
+        const backendRes = await fetch(`${apiUrl}/api/v1/post/create`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
