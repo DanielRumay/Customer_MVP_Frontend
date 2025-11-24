@@ -63,49 +63,55 @@ export default function CreateForm() {
     };
 
     return (
-        <div className="max-w-xl mx-auto bg-white p-6 mt-10 rounded-xl shadow border">
-            <h2 className="text-2xl font-semibold mb-6">Crear nuevo post</h2>
+        <div className="max-w-xl mx-auto bg-white p-8 mt-12 rounded-2xl shadow-xl border border-indigo-100">
 
+            {/* TÍTULO PRINCIPAL */}
+            <h2 className="text-3xl font-bold mb-8 text-center bg-gradient-to-r from-indigo-600 to-indigo-400 bg-clip-text text-transparent">
+                Crear nuevo post
+            </h2>
+
+            {/* MENSAJE */}
             {message && (
-                <p className="mb-4 text-center text-blue-600 font-medium">
+                <p className="mb-6 text-center text-indigo-600 font-semibold bg-indigo-50 p-3 rounded-lg">
                     {message}
                 </p>
             )}
 
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form onSubmit={handleSubmit} className="space-y-6">
 
                 {/* TÍTULO */}
                 <div>
-                    <label className="font-medium block mb-1">Título</label>
+                    <label className="font-semibold text-gray-800 block mb-2">Título</label>
                     <input
                         type="text"
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
-                        className="w-full border p-3 rounded-lg"
-                        placeholder="Ej: Busco profesor de Calculo II"
+                        className="w-full border border-indigo-300 p-3 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+                        placeholder="Ej: Busco profesor de Cálculo II"
                         required
                     />
                 </div>
 
                 {/* CATEGORÍA */}
                 <div>
-                    <label className="font-medium block mb-1">Categoría</label>
+                    <label className="font-semibold text-gray-800 block mb-2">Categoría</label>
                     <input
                         type="text"
                         value={category}
                         onChange={(e) => setCategory(e.target.value)}
-                        className="w-full border p-3 rounded-lg"
+                        className="w-full border border-indigo-300 p-3 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none"
                         placeholder="Ej: Matemáticas"
                     />
                 </div>
 
                 {/* DESCRIPCIÓN */}
                 <div>
-                    <label className="font-medium block mb-1">Descripción</label>
+                    <label className="font-semibold text-gray-800 block mb-2">Descripción</label>
                     <textarea
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
-                        className="w-full border p-3 rounded-lg min-h-[120px]"
+                        className="w-full border border-indigo-300 p-3 rounded-lg min-h-[130px]
+                    focus:ring-2 focus:ring-indigo-500 focus:outline-none"
                         placeholder="Describe qué tipo de profesor o clase necesitas..."
                         required
                     />
@@ -113,18 +119,24 @@ export default function CreateForm() {
 
                 {/* SUBIR IMAGEN */}
                 <div>
-                    <label className="font-medium block mb-1">Imagen (opcional)</label>
+                    <label className="font-semibold text-gray-800 block mb-2">Imagen (opcional)</label>
                     <input
                         type="file"
                         accept="image/*"
                         onChange={(e) => setImageFile(e.target.files?.[0] || null)}
-                        className="w-full border p-3 rounded-lg"
+                        className="w-full border border-indigo-300 p-3 rounded-lg
+                    bg-indigo-50 file:bg-indigo-600 file:text-white file:border-none
+                    file:px-4 file:py-2 file:rounded-lg file:mr-4 hover:file:bg-indigo-700"
                     />
                 </div>
+
+                {/* BOTÓN */}
                 <button
                     type="submit"
                     disabled={loading}
-                    className="w-full bg-blue-600 text-white p-3 rounded-xl hover:bg-blue-700 transition disabled:opacity-50" >
+                    className="w-full bg-indigo-600 text-white p-3 rounded-xl font-semibold
+                hover:bg-indigo-700 transition disabled:bg-indigo-300 disabled:cursor-not-allowed"
+                >
                     {loading ? "Creando..." : "Crear post"}
                 </button>
             </form>
