@@ -4,7 +4,7 @@ import { jwtDecode } from "jwt-decode";
 
 
 export async function GET() {
-
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
     try {
         const cookieStore = await cookies();
         const token = cookieStore.get("token")?.value;
@@ -28,7 +28,6 @@ export async function GET() {
         }
 
         const userId = decoded?.id;
-        console.log("🔹 ID obtenido del token:", userId);
 
         if (!userId) {
             return NextResponse.json(
@@ -37,7 +36,7 @@ export async function GET() {
             );
         }
 
-        const url = `http://localhost:8080/api/v1/user/getuser/${userId}`;
+        const url = `${apiUrl}/api/v1/user/getuser/${userId}`;
 
         const backendRes = await fetch(url, {
             method: "GET",
